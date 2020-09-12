@@ -1,92 +1,68 @@
-# React TVMaze
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Deployed App
-https://git.generalassemb.ly/pages/ga-wdi-exercises/react-tvmaze/
+## Available Scripts
 
-## [Start with a Mock](https://facebook.github.io/react/docs/thinking-in-react.html#start-with-a-mock)
-First step in creating a React app is to start with a mock and some sample data.
-These are the two views for our app:
+In the project directory, you can run:
 
-### The Search Page
-![search page](./images/search.png)
+### `npm start`
 
-I've identified two components on the search page.
-1. The top level component, which we'll call `Home`, is boxed in magenta.
-2. The search input, a sub-component of `Home`, in yellow we'll call `Search`.
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### The Results Page
-![results page](./images/results.png)
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-I've identified three components on this page.
-1. The same `Home` top level component.
-2. A `results` components which contains results and an option to search again.
-3. The individual results
+### `npm test`
 
-### Component Hierarchy
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Given these breakdowns we have a component hierarchy that looks like:
-- `Home`
-  - `Search`
-  - `Results`
-    - `Result`
+### `npm run build`
 
-#### Sample Data
-Use `results.json` as the result you would get back from any search.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## [Build a Static Version of the App](https://facebook.github.io/react/docs/thinking-in-react.html#step-2-build-a-static-version-in-react)
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-First we will build a static version of the app passing all of our data by `props`.
-This makes it much easier to avoid getting bogged down in tricky details of functionality while implementing the visual appearance of the UI.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## [Identify the Minimal Representation of UI State](https://facebook.github.io/react/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state)
+### `npm run eject`
 
-For our app to work we need:
-- `movies` (movies to show)
-- `query` (title being searched)
-- `hasSearched` (boolean determining wether to show the search input or the results)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-All of these are subject to change over time and so each must be kept in state.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## [Identify Where Your State Should Live](https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live)
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Central to considering where state lives is the idea of **one way data flow**.
-The react documentation describes this step as "often the most challenging part for newcomers to understand".
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Our task here is to look for the component for each aspect of state that could be the one place where that state is managed.
+## Learn More
 
-In our app, `query` is needed to keep track of what is going on in the search box, as well as to make the actual query.
-This request will return the movies to the same component which managed the query so `movies` should be managed by the same component.
-Finally, we have our `hasSearched` flag which we need to set when we make the request so these should all live in the same place.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Currently, the parent to the `Results` and `Search` components is `Home`.
-We don't want to clutter our top level component as our app grows so this segues nicely into the idea of Container and Presentational Components.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### [Container & Presentational Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
-The above workflow has led to the currently very popular component architecture of distinguishing container and presentational components.
+### Code Splitting
 
-Presentational components are components that render themselves based solely on the information that they receive from props. At this point, all of our components are presentational.
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-Container components are components whose job it is to exclusively manage state and as props any data needed by its presentational components.
+### Analyzing the Bundle Size
 
-This leads to a very nice division where state management and presentation are cleanly separated.
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-We are going to create a `SearchContainer` to manage `query`, `shows`, and `hasSearched`.
+### Making a Progressive Web App
 
-## [Add Inverse Data Flow](https://facebook.github.io/react/docs/thinking-in-react.html#step-5-add-inverse-data-flow)
-The last step is passing callbacks through props to presentational components to provide behavior.
-We will need three functions defined on the `SearchContainer` component to provide necessary behavior to `Search` and `Results`:
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-1. `handleSearchInput` for managing changes to the input field
-2. `onSubmitQuery` for kicking of the ajax request
-3. `onSearchAgain` to set state back to render the search bar
+### Advanced Configuration
 
-> What is the point of all of these `.bind(this)` statements?
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Further
-Create the ability to sort on different fields.
+### Deployment
 
-### Further
-Use ajax to get live data for your app. Remember to use the `componentDidMount` method for your ajax calls.
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### Further
-Link the show result to another part of the TVmaze api. For example actors or schedule.
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
